@@ -8,6 +8,7 @@ import {
   useToastController,
   XStack,
   YStack,
+  Text,
 } from '@my/ui'
 import { ChevronDown, ChevronUp } from '@tamagui/lucide-icons'
 import React, { useState } from 'react'
@@ -48,6 +49,8 @@ export function HomeScreen() {
       <XStack>
         <Button {...linkProps}>Link to user</Button>
       </XStack>
+
+      <Text>Exit Forgetting</Text>
 
       <SheetDemo />
     </YStack>
