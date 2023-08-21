@@ -89,7 +89,19 @@ You may potentially want to have the native module transpiled for the next app. 
 
 ### Deploying to Vercel
 
+
 - Root: `apps/next`
 - Install command to be `yarn set version berry && yarn install`
 - Build command: leave default setting
 - Output dir: leave default setting
+
+
+## Contributors:
+### Biplob Kumar Sutradhur
+- [GitHub](https://github.com/biplobsd/)
+- [Telegram](https://t.me/biplob_sd)
+
+### Redul Hossen
+- [GitHub](https://github.com/Redul94/)
+- [Telegram](https://t.me/redul94)
+
