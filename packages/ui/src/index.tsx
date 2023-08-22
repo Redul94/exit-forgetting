@@ -1,5 +1,8 @@
 export * from 'tamagui'
 export * from '@tamagui/toast'
 export * from './MyComponent'
+export * from './components/circleButton'
+export * from './components/heroText'
+export * from './components/heroSection'
 export { config } from './tamagui.config'
 export * from './CustomToast'
