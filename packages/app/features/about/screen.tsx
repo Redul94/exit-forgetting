@@ -66,7 +66,7 @@ export const About = () => {
         <Button icon={BookOpen} marginRight={9}>
           Learn more
         </Button>
-        <Button icon={Coffee}>Buy me a coffe</Button>
+        <Button icon={Coffee}>Buy me a coffee</Button>
       </XStack>
     </YStack>
   )
