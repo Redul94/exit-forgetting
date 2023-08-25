@@ -3,6 +3,8 @@ import { useColorScheme } from 'react-native'
 
 import { ToastViewport } from './ToastViewport'
 import config from '../tamagui.config'
+import {SheetLayout} from "@my/ui/src";
+import React from "react";
 
 export function Provider({ children, ...rest }: Omit<TamaguiProviderProps, 'config'>) {
   const scheme = useColorScheme()
@@ -28,6 +30,7 @@ export function Provider({ children, ...rest }: Omit<TamaguiProviderProps, 'conf
         <CustomToast />
         <ToastViewport />
       </ToastProvider>
+      <SheetLayout />
     </TamaguiProvider>
   )
 }
