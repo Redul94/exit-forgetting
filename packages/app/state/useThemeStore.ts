@@ -20,13 +20,20 @@ export const useThemeStore = create<ThemeState>((set, get) => ({
     set(({ mode }) => ({ mode: get().getThemeName(systemMode) === 'dark' ? 'light' : 'dark' })),
   setMode: (mode) => set(() => ({ mode })),
   getMode: (systemMode) => {
+    const defaultTheme: Theme = {
+      ...DefaultTheme,
+      colors: {
+        ...DefaultTheme.colors,
+        background: 'white',
+      },
+    }
     switch (get().mode) {
       case 'dark':
         return DarkTheme
       case 'light':
-        return DefaultTheme
+        return defaultTheme
       case 'auto':
-        return systemMode === 'dark' ? DarkTheme : DefaultTheme
+        return systemMode === 'dark' ? DarkTheme : defaultTheme
       default:
         return DarkTheme
     }
