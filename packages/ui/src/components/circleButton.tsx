@@ -1,16 +1,17 @@
 import { ColorStyleProp } from '@tamagui/web/types/types'
 import { YStack, Text, Button } from 'tamagui'
 
-interface CircleButtonProps {
+export interface CircleButtonProps {
   backgroundColor: ColorStyleProp
   text: string
   emoji: string
+  key: string | number
 }
 
 export const CircleButton = ({ backgroundColor, emoji, text }: CircleButtonProps) => {
   return (
     <YStack alignItems="center" gap="$2">
-      <Button size="$10" circular fontSize="$7" backgroundColor={backgroundColor}>
+      <Button size="$12" circular fontSize="$9" backgroundColor={backgroundColor}>
         {emoji}
       </Button>
       <Text>{text}</Text>

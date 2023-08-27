@@ -14701,6 +14701,7 @@ __metadata:
     eslint: ^8.21.0
     node-gyp: ^9.3.1
     prettier: ^2.7.1
+    react-native-draggable-grid: ^2.1.7
     turbo: ^1.10.3
     typescript: ^5.1.3
     zustand: ^4.4.1
@@ -16351,6 +16352,16 @@ __metadata:
     jscodeshift: ^0.13.1
     nullthrows: ^1.1.1
   checksum: d3a40b557d4b3a0d51664070eb8388b0dde247a0518025ff5a815d3573c98ff16f616df8236e827ee16625f685169931db5c966dd144d860ad5aed437b65b28c
+  languageName: node
+  linkType: hard
+
+"react-native-draggable-grid@npm:^2.1.7":
+  version: 2.1.7
+  resolution: "react-native-draggable-grid@npm:2.1.7"
+  peerDependencies:
+    react: ^16 || ^17 || ^18
+    react-native: "*"
+  checksum: 81d4babdea5e00b24b96f38eb53772eb77872b86f9bd562733be999d65dbc117cc5e72d636da9a9d443462ea314dedd2380413fd8c7beb64d1e15434b63380ec
   languageName: node
   linkType: hard
 
