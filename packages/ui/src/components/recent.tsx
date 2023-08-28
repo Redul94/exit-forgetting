@@ -1,7 +1,5 @@
 import { CircleButton, CircleButtonProps } from './circleButton'
-
-import { DraggableGrid } from 'react-native-draggable-grid'
-
+import { FlatList } from 'react-native'
 import { YStack, Text, Stack } from 'tamagui'
 
 interface RecentProps {
@@ -13,11 +11,16 @@ export const Recent = ({ list }: RecentProps) => {
     <>
       <YStack gap="$2">
         <Text fontSize={'$5'}>Recent</Text>
-        <Stack w={'100%'}>
-          <DraggableGrid
+        <Stack>
+          <FlatList
             numColumns={2}
-            renderItem={(item) => <CircleButton {...item} />}
+            renderItem={({ item }) => <CircleButton {...item} />}
             data={list}
+            contentContainerStyle={{ gap: 20 }}
+            columnWrapperStyle={{
+              gap: 30,
+              justifyContent: 'center',
+            }}
           />
         </Stack>
       </YStack>
