@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Save } from '@tamagui/lucide-icons'
 import { XStack, YStack, Stack, Text, H1, Button, Input, Label } from 'tamagui'
 import { CircleButton } from '@my/ui/src'
@@ -10,6 +10,8 @@ const { useParam } = createParam<{ screenName: string }>()
 
 export const CreateEdit = () => {
   const [screenName] = useParam('screenName')
+
+  const [checkedList, setCheckList] = useState(demoRecent)
 
   return (
     <YStack flex={1} paddingBottom={7} marginHorizontal="$4">
@@ -63,8 +65,20 @@ export const CreateEdit = () => {
           <FlatList
             id="carryItems"
             numColumns={3}
-            renderItem={({ item, index }) => <CircleButton small {...item} />}
-            data={demoRecent}
+            renderItem={({ item, index }) => (
+              <CircleButton
+                onPress={() =>
+                  setCheckList((x) => {
+                    x.splice(index, 1)
+                    return [...x]
+                  })
+                }
+                small
+                {...item}
+                removed
+              />
+            )}
+            data={checkedList}
             contentContainerStyle={{ gap: 20 }}
             columnWrapperStyle={{ gap: 20 }}
           />

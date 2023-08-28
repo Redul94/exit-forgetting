@@ -1,7 +1,7 @@
 import { ColorStyleProp } from '@tamagui/web/types/types'
-import { YStack, Text, ZStack, Circle, Stack } from 'tamagui'
+import { YStack, Text, ZStack, Circle, Stack, Button } from 'tamagui'
 import { useLink } from 'solito/link'
-import { Check } from '@tamagui/lucide-icons'
+import { Check, XCircle } from '@tamagui/lucide-icons'
 import { GestureResponderEvent } from 'react-native'
 
 export interface CircleButtonProps {
@@ -12,6 +12,7 @@ export interface CircleButtonProps {
   href?: string
   small?: boolean
   checked?: boolean
+  removed?: boolean
   onPress?: ((event: GestureResponderEvent) => void) | null
 }
 
@@ -22,7 +23,9 @@ export const CircleButton = ({
   href,
   small,
   checked,
+  removed,
   onPress,
+  key,
 }: CircleButtonProps) => {
   const link = useLink({
     href: href ?? '/check',
@@ -31,7 +34,7 @@ export const CircleButton = ({
   return (
     <YStack
       {...link}
-      onPress={onPress ?? link.onPress}
+      onPress={removed ? null : onPress ?? link.onPress}
       animation={'lazy'}
       alignItems="center"
       gap="$2"
@@ -54,7 +57,7 @@ export const CircleButton = ({
           <ZStack f={1}>
             <Circle
               {...link}
-              onPress={onPress ?? link.onPress}
+              onPress={removed ? null : onPress ?? link.onPress}
               enterStyle={{
                 scale: 1.5,
                 y: -10,
@@ -75,6 +78,26 @@ export const CircleButton = ({
               <Check size={'$7'} color="$green11" />
             </Stack>
           </ZStack>
+        )}
+        {removed && (
+          <Button
+            hoverStyle={{
+              scale: 1.2,
+            }}
+            pressStyle={{
+              scale: 0.5,
+            }}
+            theme={'red'}
+            y={1}
+            x={70}
+            size={'$2'}
+            icon={<XCircle size={'$1'} />}
+            color={'$red10'}
+            onPress={onPress}
+            animation={'lazy'}
+            circular
+            transparent
+          />
         )}
       </ZStack>
       <Text opacity={checked ? 0.5 : 1}>{text}</Text>
