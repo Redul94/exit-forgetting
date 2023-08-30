@@ -4,61 +4,74 @@ import { XStack, YStack, Text, H1, Progress } from 'tamagui'
 import { demoRecent } from '../home/screen'
 import { CircleButton, Stack } from '@my/ui/src'
 import { FlatList } from 'react-native'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { usePickedStore } from 'app/state/usePickedStore'
+import { PickUp } from '@my/ui/src/components/picked'
 
 export const Check = () => {
   const [checkedList, setCheckList] = useState(new Array<boolean>(demoRecent.length).fill(false))
+  const { setOpen } = usePickedStore()
 
   const completedCount = ((checkedList.filter((x) => x).length / demoRecent.length) * 100).toFixed(
     0
   )
+
+  useEffect(() => {
+    if (completedCount === '100') {
+      setOpen(true)
+    }
+  }, [completedCount])
+
   return (
-    <YStack flex={1} mt={'$2'} alignItems="center" space>
-      <YStack alignItems="center" space={'$1.5'}>
-        <H1 letterSpacing={'$1'} fontWeight={'$1'}>
-          Check
-        </H1>
-        <Text mb={'$2'} fontSize={'$4'}>
-          🏫 University
-        </Text>
-        <XStack space>
-          <Button icon={Edit2}>Edit</Button>
-          <Button icon={Share}>Share</Button>
+    <>
+      <YStack flex={1} mt={'$2'} alignItems="center" space>
+        <YStack alignItems="center" space={'$1.5'}>
+          <H1 letterSpacing={'$1'} fontWeight={'$1'}>
+            Check
+          </H1>
+          <Text mb={'$2'} fontSize={'$4'}>
+            🏫 University
+          </Text>
+          <XStack space>
+            <Button icon={Edit2}>Edit</Button>
+            <Button icon={Share}>Share</Button>
+          </XStack>
+        </YStack>
+
+        <XStack space alignItems="center">
+          <Stack alignItems="flex-end" w={'$3'}>
+            <Text>{completedCount}%</Text>
+          </Stack>
+          <Progress maxWidth={'$20'} value={parseInt(completedCount)}>
+            <Progress.Indicator enterStyle={{}} backgroundColor={'$green8'} animation="bouncy" />
+          </Progress>
         </XStack>
-      </YStack>
 
-      <XStack space alignItems="center">
-        <Stack alignItems="flex-end" w={'$3'}>
-          <Text>{completedCount}%</Text>
+        <Text>Touch to check</Text>
+
+        <Stack flex={1}>
+          <FlatList
+            numColumns={3}
+            renderItem={({ item, index }) => (
+              <CircleButton
+                onPress={() =>
+                  setCheckList((x) => {
+                    x[index] = !x[index]
+                    return [...x]
+                  })
+                }
+                checked={checkedList[index]}
+                small
+                {...item}
+              />
+            )}
+            data={demoRecent}
+            contentContainerStyle={{ gap: 25 }}
+            columnWrapperStyle={{ gap: 25 }}
+          />
         </Stack>
-        <Progress maxWidth={'$20'} value={parseInt(completedCount)}>
-          <Progress.Indicator enterStyle={{}} backgroundColor={'$green8'} animation="bouncy" />
-        </Progress>
-      </XStack>
-
-      <Text>Touch to check</Text>
-
-      <Stack flex={1}>
-        <FlatList
-          numColumns={3}
-          renderItem={({ item, index }) => (
-            <CircleButton
-              onPress={() =>
-                setCheckList((x) => {
-                  x[index] = !x[index]
-                  return [...x]
-                })
-              }
-              checked={checkedList[index]}
-              small
-              {...item}
-            />
-          )}
-          data={demoRecent}
-          contentContainerStyle={{ gap: 25 }}
-          columnWrapperStyle={{ gap: 25 }}
-        />
-      </Stack>
-    </YStack>
+      </YStack>
+      <PickUp />
+    </>
   )
 }
