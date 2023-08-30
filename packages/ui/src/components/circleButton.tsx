@@ -25,7 +25,6 @@ export const CircleButton = ({
   checked,
   removed,
   onPress,
-  key,
 }: CircleButtonProps) => {
   const link = useLink({
     href: href ?? '/check',
