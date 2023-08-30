@@ -6,7 +6,13 @@ export const HeroSection = () => {
   return (
     <YStack space>
       <HeroText mainHeading="Exit Forgetting" subHeading="Forgetting items when leaving" />
-      <CircleButton backgroundColor="$red3Light" emoji="➕" text="Create" />
+      <CircleButton
+        href="/create_edit/Create"
+        key={1}
+        backgroundColor="$purple5"
+        emoji="➕"
+        text="Create"
+      />
     </YStack>
   )
 }
