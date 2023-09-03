@@ -1,13 +1,12 @@
-import { Home, CheckCircle, Book, Coffee, X } from '@tamagui/lucide-icons'
-import { useState } from 'react'
+import { Home, CheckCircle, X } from '@tamagui/lucide-icons'
 import { Button, Dialog, H2, XStack, YStack } from 'tamagui'
-import { Cofe } from './coffee'
+import { Coffee } from './coffee'
+import { usePickedStore } from 'app/state/usePickedStore'
 
 export function PickUp() {
-  const [open, setOpen] = useState(false)
+  const { open, setOpen } = usePickedStore()
   return (
     <>
-      <Button onPress={() => setOpen(true)}>Open</Button>
       <Dialog
         open={open}
         modal
@@ -41,9 +40,9 @@ export function PickUp() {
             exitStyle={{ x: 0, y: 10, opacity: 0, scale: 0.95 }}
             gap="$4"
           >
-            <YStack marginBottom={20}>
+            <YStack>
               <XStack justifyContent="flex-end">
-                <Button onPress={() => setOpen(false)} marginBottom={13} width={50} icon={X} />
+                <Button onPress={() => setOpen(false)} marginBottom={13} icon={X} circular />
               </XStack>
 
               <YStack alignItems="center" space={'$2'} mb={'$5'}>
@@ -51,12 +50,12 @@ export function PickUp() {
                 <H2>All Picked</H2>
               </YStack>
 
-              <XStack justifyContent="center">
-                <Button icon={Home} marginBottom={39}>
-                  Go Home
-                </Button>
-              </XStack>
-              <Cofe />
+              <YStack space>
+                <XStack justifyContent="center">
+                  <Button icon={Home}>Go Home</Button>
+                </XStack>
+                <Coffee />
+              </YStack>
             </YStack>
           </Dialog.Content>
         </Dialog.Portal>

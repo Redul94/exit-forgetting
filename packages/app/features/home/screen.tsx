@@ -1,8 +1,8 @@
 import { YStack } from 'tamagui'
-import { CircleButtonProps, HeroSection, Recent } from '@my/ui/src'
+import { CircleButtonProps, HeroSection, Recent, ScrollView } from '@my/ui/src'
 import React from 'react'
 import { useThemeStore } from 'app/state/useThemeStore'
-import { ScrollView, useColorScheme } from 'react-native'
+import { useColorScheme } from 'react-native'
 
 export const demoRecent: CircleButtonProps[] = [
   {
@@ -84,11 +84,8 @@ export function HomeScreen() {
   const useTheme = useThemeStore()
 
   return (
-    <ScrollView>
-      <YStack my={'$2'} marginHorizontal={'$4'} theme={useTheme.getThemeName(scheme)}>
-        <HeroSection />
-        <Recent list={demoRecent} />
-      </YStack>
-    </ScrollView>
+    <YStack theme={useTheme.getThemeName(scheme)}>
+      <Recent list={demoRecent} listHeaderComponent={<HeroSection />} />
+    </YStack>
   )
 }

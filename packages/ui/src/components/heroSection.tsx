@@ -4,7 +4,7 @@ import { HeroText } from './heroText'
 
 export const HeroSection = () => {
   return (
-    <YStack space>
+    <YStack mt={'$2'} space>
       <HeroText mainHeading="Exit Forgetting" subHeading="Forgetting items when leaving" />
       <CircleButton
         href="/create_edit/Create"
